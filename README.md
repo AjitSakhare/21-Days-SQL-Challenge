@@ -20,3 +20,7 @@ At Indian Data Club, we’re on a mission to empower the next generation with pr
 ### Day 5 (07/11): Aggregate Functions (COUNT, SUM, AVG, MIN, MAX)
 
 **Topics:** COUNT, SUM, AVG, MIN, MAX functions
+
+### Day 6 (09/11): GROUP BY Clause
+
+**Topics:** GROUP BY, aggregating by categories
