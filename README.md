@@ -24,3 +24,7 @@ At Indian Data Club, we’re on a mission to empower the next generation with pr
 ### Day 6 (09/11): GROUP BY Clause
 
 **Topics:** GROUP BY, aggregating by categories
+
+### Day 7 (10/11): HAVING Clause
+
+**Topics:** HAVING clause, filtering aggregated results
