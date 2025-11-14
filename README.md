@@ -28,3 +28,19 @@ At Indian Data Club, we’re on a mission to empower the next generation with pr
 ### Day 7 (10/11): HAVING Clause
 
 **Topics:** HAVING clause, filtering aggregated results
+
+### Day 8 (11/11): String Functions
+
+**Topics:** UPPER, LOWER, LENGTH, CONCAT, SUBSTRING
+
+### Day 9 (12/11): Date Functions
+
+**Topics:** DATE functions, date arithmetic, EXTRACT
+
+### Day 10 (13/11): CASE Statements
+
+**Topics:** CASE WHEN, conditional logic, derived columns
+
+### Day 11 (14/11): DISTINCT and Handling Duplicates
+
+**Topics:** DISTINCT, removing duplicates, unique values
