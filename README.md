@@ -44,3 +44,12 @@ At Indian Data Club, we’re on a mission to empower the next generation with pr
 ### Day 11 (14/11): DISTINCT and Handling Duplicates
 
 **Topics:** DISTINCT, removing duplicates, unique values
+
+****Day 12 (15/11):** NULL Handling in SQL — IS NULL, IS NOT NULL & COALESCE
+
+**Today** - focus was on understanding and managing NULL values, one of the most common challenges in real datasets.
+
+### Day 13 (17/11): INNER JOIN
+
+**Topics:** INNER JOIN, joining two tables, relationship understanding
+
