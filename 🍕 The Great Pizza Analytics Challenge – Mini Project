@@ -1,0 +1,470 @@
+🍕 The Great Pizza Analytics Challenge – Mini Project
+
+
+You are a Data Analyst at The Great Pizza, a fast-growing pizza chain in India.
+
+Your job is to study the sales data and find useful business insights using SQL.
+
+
+You must use SQL concepts learned till Day 15:
+
+SELECT
+
+WHERE
+
+ORDER BY
+
+LIKE
+
+GROUP BY
+
+HAVING
+
+JOINS
+
+AGGREGATES (SUM, COUNT, AVG, MAX, MIN)
+
+
+
+Using the concepts learned up to Day 15 — filtering, sorting, grouping, joins, and basic analysis — we explored customer behavior, pizza trends, order values, revenue, and more.
+
+
+
+This mini-project helped in:
+
+Understanding how SQL works in real business scenarios
+
+Practising joins and aggregation functions
+
+Learning how to extract insights from raw data
+
+
+
+📌 DATABASE STRUCTURE
+
+
+
+CREATE TABLE pizzas (
+
+  pizza_id INT IDENTITY(1,1) PRIMARY KEY,
+
+  pizza_name VARCHAR(100) NOT NULL,
+
+  size VARCHAR(20) NOT NULL,   -- small, medium, large
+
+  price DECIMAL(6,2) NOT NULL
+
+);
+
+
+
+CREATE TABLE customers (
+
+  customer_id INT IDENTITY(1,1) PRIMARY KEY,
+
+  customer_name VARCHAR(100) NOT NULL,
+
+  phone VARCHAR(15),
+
+  email VARCHAR(100),
+
+  address VARCHAR(200)
+
+);
+
+
+
+CREATE TABLE orders (
+
+  order_id INT IDENTITY(1,1) PRIMARY KEY,
+
+  customer_id INT NOT NULL,
+
+  order_date DATETIME NOT NULL,
+
+  total_amount DECIMAL(8,2),
+
+
+
+  FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+
+);
+
+
+
+CREATE TABLE order_items (
+
+  order_item_id INT IDENTITY(1,1) PRIMARY KEY,
+
+  order_id INT NOT NULL,
+
+  pizza_id INT NOT NULL,
+
+  quantity INT NOT NULL,
+
+  line_total DECIMAL(10,2),
+
+
+
+  FOREIGN KEY (order_id) REFERENCES orders(order_id),
+
+  FOREIGN KEY (pizza_id) REFERENCES pizzas(pizza_id)
+
+);
+
+
+
+📌 SAMPLE DATA (SMALL SET TO UNDERSTAND)
+
+INSERT INTO pizzas (pizza_name, size, price) VALUES
+
+('Margherita', 'Small', 199.00),
+
+('Margherita', 'Medium', 299.00),
+
+('Pepperoni', 'Medium', 349.00),
+
+('Veggie Delight', 'Large', 449.00),
+
+('Chicken Pizza', 'Large', 499.00);
+
+
+
+
+
+INSERT INTO customers (customer_name, phone, email, address) VALUES
+
+('Ajit S', '9876543210', 'ajit@gmail.com', 'Mumbai'),
+
+('Ravi U', '9988776655', 'ravi@gmail.com', 'Delhi'),
+
+('Rahul R', '9090909090', 'rahul@gmail.com', 'Pune'),
+
+('Priya K', '9123456780', 'priya@gmail.com', 'Bengaluru');
+
+
+
+
+
+INSERT INTO orders (customer_id, order_date, total_amount) VALUES
+
+(1, '2025-10-01', 548.00),
+
+(2, '2025-09-01', 299.00),
+
+(3, '2025-10-02', 948.00),
+
+(1, '2025-08-03', 449.00),
+
+(4, '2025-10-03', 499.00);
+
+
+
+
+
+INSERT INTO order_items (order_id, pizza_id, quantity, line_total) VALUES
+
+-- Order 1
+
+(1, 2, 1, 299.00),
+
+(1, 3, 1, 349.00),
+
+
+
+-- Order 2
+
+(2, 1, 1, 199.00),
+
+(2, 2, 1, 299.00),
+
+
+
+-- Order 3
+
+(3, 4, 2, 898.00),
+
+(3, 1, 1, 199.00),
+
+
+
+-- Order 4
+
+(4, 4, 1, 449.00),
+
+
+
+-- Order 5
+
+(5, 5, 1, 499.00);
+
+
+
+📌 PROJECT TASKS – PHASE WISE
+
+
+
+🔶 PHASE 1: Basic Exploration
+
+1️⃣ See all customers
+
+
+
+SELECT * FROM customers;
+
+2️⃣ Show all pizzas
+
+
+
+SELECT * FROM pizzas;
+
+3️⃣ Find all orders made on a specific date
+
+
+
+SELECT * 
+
+FROM orders
+
+WHERE CAST(order_date AS DATE) = '2025-01-01';
+
+4️⃣ Find all pizzas costing less than ₹300
+
+
+
+SELECT * 
+
+FROM pizzas
+
+WHERE price < 300;
+
+🔶 PHASE 2: Filtering & Sorting
+
+5️⃣ Show customers living in Mumbai
+
+
+
+SELECT * 
+
+FROM customers
+
+WHERE address = 'Mumbai';
+
+6️⃣ Get top 5 most expensive pizzas
+
+
+
+SELECT *
+
+FROM pizzas
+
+ORDER BY price DESC
+
+FETCH FIRST 5 ROWS ONLY;
+
+7️⃣ Show orders above ₹500
+
+
+
+SELECT *
+
+FROM orders
+
+WHERE total_amount > 500;
+
+🔶 PHASE 3: Aggregation (Business Insights)
+
+8️⃣ Total number of orders
+
+
+
+SELECT COUNT(*) AS total_orders
+
+FROM orders;
+
+9️⃣ Total revenue
+
+
+
+SELECT SUM(total_amount) AS total_revenue
+
+FROM orders;
+
+🔟 Average order value
+
+
+
+SELECT AVG(total_amount) AS avg_order_value
+
+FROM orders;
+
+1️⃣1️⃣ Highest & lowest pizza price
+
+
+
+SELECT MAX(price) AS highest_price,
+
+       MIN(price) AS lowest_price
+
+FROM pizzas;
+
+🔶 PHASE 4: GROUP BY Analytics
+
+1️⃣2️⃣ How many orders each customer placed?
+
+
+
+SELECT customer_id,
+
+       COUNT(order_id) AS total_orders
+
+FROM orders
+
+GROUP BY customer_id;
+
+1️⃣3️⃣ Total revenue from each city
+
+
+
+SELECT c.address,
+
+       SUM(o.total_amount) AS total_revenue
+
+FROM orders o
+
+JOIN customers c ON o.customer_id = c.customer_id
+
+GROUP BY c.address;
+
+🔶 PHASE 5: Joins (Real Business Insights)
+
+1️⃣4️⃣ Show customer name with their order details
+
+
+
+SELECT o.order_id, c.customer_name, o.total_amount
+
+FROM orders o
+
+JOIN customers c ON o.customer_id = c.customer_id;
+
+1️⃣5️⃣ List all pizzas ordered with customer name
+
+
+
+SELECT c.customer_name, p.pizza_name, oi.quantity
+
+FROM order_items oi
+
+JOIN pizzas p ON oi.pizza_id = p.pizza_id
+
+JOIN orders o ON oi.order_id = o.order_id
+
+JOIN customers c ON o.customer_id = c.customer_id;
+
+1️⃣6️⃣ Which pizza was ordered the most?
+
+
+
+SELECT p.pizza_name,
+
+       COUNT(oi.item_id) AS times_ordered
+
+FROM pizzas p
+
+JOIN order_items oi ON p.pizza_id = oi.pizza_id
+
+GROUP BY p.pizza_name
+
+ORDER BY times_ordered DESC;
+
+🔶 PHASE 6: Advanced Insights (Using HAVING)
+
+1️⃣7️⃣ Customers who ordered 2 or more times
+
+
+
+SELECT customer_id,
+
+       COUNT(order_id) AS total_orders
+
+FROM orders
+
+GROUP BY customer_id
+
+HAVING COUNT(order_id) >= 2;
+
+1️⃣8️⃣ Pizzas with average price > ₹350
+
+
+
+SELECT pizza_name,
+
+       AVG(price) AS avg_price
+
+FROM pizzas
+
+GROUP BY pizza_name
+
+HAVING AVG(price) > 350;
+
+1️⃣9️⃣ Cities with revenue more than ₹5000
+
+
+
+SELECT c.address,
+
+       SUM(o.total_amount) AS total_revenue
+
+FROM orders o
+
+JOIN customers c ON o.customer_id = c.customer_id
+
+GROUP BY c.address
+
+HAVING SUM(o.total_amount) > 5000;
+
+🔶 PHASE 7: Final Business Insights (Real Report)
+
+2️⃣0️⃣ Top 3 highest value orders
+
+
+
+SELECT order_id, total_amount
+
+FROM orders
+
+ORDER BY total_amount DESC
+
+FETCH FIRST 3 ROWS ONLY;
+
+2️⃣1️⃣ Most popular pizza size
+
+
+
+SELECT p.size,
+
+       COUNT(oi.item_id) AS total_orders
+
+FROM pizzas p
+
+JOIN order_items oi ON p.pizza_id = oi.pizza_id
+
+GROUP BY p.size
+
+ORDER BY total_orders DESC;
+
+2️⃣2️⃣ Total amount spent by each customer
+
+
+
+SELECT c.customer_name,
+
+       SUM(o.total_amount) AS total_spent
+
+FROM customers c
+
+JOIN orders ON c.customer_id = o.customer_id
+
+GROUP BY c.customer_name;
+
