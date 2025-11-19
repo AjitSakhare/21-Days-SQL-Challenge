@@ -53,3 +53,11 @@ At Indian Data Club, we’re on a mission to empower the next generation with pr
 
 **Topics:** INNER JOIN, joining two tables, relationship understanding
 
+
+🍕 The Great Pizza Analytics Challenge – SQL Mini Project
+
+A simple SQL project to learn real-world data analysis using pizza sales data.
+
+In this challenge, you act as a Data Analyst at The Great Pizza company.
+Your job is to explore customer data, pizza information, orders, and order items to find useful business insights using SQL.
+
