@@ -53,11 +53,26 @@ At Indian Data Club, we’re on a mission to empower the next generation with pr
 
 **Topics:** INNER JOIN, joining two tables, relationship understanding
 
+**Day 14 **
 
 🍕 The Great Pizza Analytics Challenge – SQL Mini Project
 
 A simple SQL project to learn real-world data analysis using pizza sales data.
 
-In this challenge, you act as a Data Analyst at The Great Pizza company.
+In this challenge, you act as a Data Analyst at The Great Pizza Company.
 Your job is to explore customer data, pizza information, orders, and order items to find useful business insights using SQL.
 
+
+### Day 15 (19/11): Multiple Joins
+
+**Topics:** Joining more than two tables, complex relationships
+
+
+### Day 16 (21/11): Subqueries (WHERE clause)
+
+**Topics:** Subqueries in WHERE, nested queries, filtering with subqueries
+
+
+### Day 17 (22/11): Subqueries (SELECT and FROM clause)
+
+**Topics:** Subqueries in SELECT, derived tables, inline views
